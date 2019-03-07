@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="docker rocketmq,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="PiersX">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="通过docker快速部署RocketMQ 1. Quick Start部署Server1$ docker run -d -p 9876:9876 --name rocketmq-server  foxiswho/rocketmq:server 部署Broker1$ docker run -d -p 10911:10911 -p 10909:10909 --name rocketmq-broker">
+<meta name="keywords" content="docker rocketmq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker部署RocketMQ">
+<meta property="og:url" content="http://yoursite.com/2019/03/07/docker-rocketmq/index.html">
 <meta property="og:site_name" content="PiersX">
+<meta property="og:description" content="通过docker快速部署RocketMQ 1. Quick Start部署Server1$ docker run -d -p 9876:9876 --name rocketmq-server  foxiswho/rocketmq:server 部署Broker1$ docker run -d -p 10911:10911 -p 10909:10909 --name rocketmq-broker">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-07T10:11:48.232Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PiersX">
+<meta name="twitter:title" content="docker部署RocketMQ">
+<meta name="twitter:description" content="通过docker快速部署RocketMQ 1. Quick Start部署Server1$ docker run -d -p 9876:9876 --name rocketmq-server  foxiswho/rocketmq:server 部署Broker1$ docker run -d -p 10911:10911 -p 10909:10909 --name rocketmq-broker">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/07/docker-rocketmq/">
 
 
 
 
 
-  <title>PiersX</title>
+  <title>docker部署RocketMQ | PiersX</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,136 +218,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/docker-kafka/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="PiersX">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="PiersX">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/07/docker-kafka/" itemprop="url">docker部署Kafka</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-07T11:50:01+08:00">
-                2019-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-docker命令部署"><a href="#1-docker命令部署" class="headerlink" title="1. docker命令部署"></a>1. docker命令部署</h2><h3 id="安装Zookeeper集群"><a href="#安装Zookeeper集群" class="headerlink" title="安装Zookeeper集群"></a>安装Zookeeper集群</h3><p>启动zookeeper容器(三台机器均执行) </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull zookeeper:3.4.9</span><br><span class="line"></span><br><span class="line">\<span class="comment"># 创建zookeerper</span></span><br><span class="line">docker run -itd \</span><br><span class="line"> --name=zookeeper \</span><br><span class="line"> --restart=always \</span><br><span class="line"> --net=host \</span><br><span class="line"> --privileged=<span class="literal">true</span> \</span><br><span class="line"> -v /data/kafka_cluster/zookeeper/data:/data \</span><br><span class="line"> -v /data/kafka_cluster/zookeeper/datalog:/datalog \</span><br><span class="line"> -e ZOO_MY_ID=1 \</span><br><span class="line"> -e ZOO_SERVERS=<span class="string">"server.1=10.29.132.21:2888:3888 server.2=10.29.132.22:2888:3888 server.3=10.29.132.23:2888:3888"</span> \</span><br><span class="line"> zookeeper:3.4.9</span><br><span class="line"></span><br><span class="line">docker run -itd \</span><br><span class="line"> --name=zookeeper \</span><br><span class="line"> --restart=always \</span><br><span class="line"> --net=host \</span><br><span class="line"> --privileged=<span class="literal">true</span> \</span><br><span class="line"> -v /data/kafka_cluster/zookeeper/data:/data \</span><br><span class="line"> -v /data/kafka_cluster/zookeeper/datalog:/datalog \</span><br><span class="line"> -e ZOO_MY_ID=2 \</span><br><span class="line"> -e ZOO_SERVERS=<span class="string">"server.1=10.29.132.21:2888:3888 server.2=10.29.132.22:2888:3888 server.3=10.29.132.23:2888:3888"</span> \</span><br><span class="line"> zookeeper:3.4.9</span><br><span class="line"></span><br><span class="line">docker run -itd \</span><br><span class="line"> --name=zookeeper \</span><br><span class="line"> --restart=always \</span><br><span class="line"> --net=host \</span><br><span class="line"> --privileged=<span class="literal">true</span> \</span><br><span class="line"> -v /data/kafka_cluster/zookeeper/data:/data \</span><br><span class="line"> -v /data/kafka_cluster/zookeeper/datalog:/datalog \</span><br><span class="line"> -e ZOO_MY_ID=3 \</span><br><span class="line"> -e ZOO_SERVERS=<span class="string">"server.1=10.29.132.21:2888:3888 server.2=10.29.132.22:2888:3888 server.3=10.29.132.23:2888:3888"</span> \</span><br><span class="line"> zookeeper:3.4.9</span><br></pre></td></tr></table></figure>
-<h3 id="安装kafka集群"><a href="#安装kafka集群" class="headerlink" title="安装kafka集群"></a>安装kafka集群</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="comment">#创建kafka</span></span><br><span class="line">docker run -itd \</span><br><span class="line">--name=kafka \</span><br><span class="line">--restart=always \</span><br><span class="line">--net=host \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/hosts:/etc/hosts \</span><br><span class="line">-v /data/kafka_cluster/kafka/data:/kafka \</span><br><span class="line">-v /data/kafka_cluster/kafka/logs:/opt/kafka/logs \</span><br><span class="line">-e KAFKA_ADVERTISED_HOST_NAME=10.29.132.21 \</span><br><span class="line">-e KAFKA_ADVERTISED_PORT=9092 \</span><br><span class="line">-e KAFKA_ZOOKEEPER_CONNECT=10.29.132.21:2181,10.29.132.22:2181,10.29.132.23:2181 \</span><br><span class="line">-e KAFKA_BROKER_ID=0 \</span><br><span class="line">-e KAFKA_HEAP_OPTS=<span class="string">"-Xmx6G -Xms6G"</span> \</span><br><span class="line">wurstmeister/kafka</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="comment">#创建kafka集群</span></span><br><span class="line">docker run -itd \</span><br><span class="line">--name=kafka \</span><br><span class="line">--restart=always \</span><br><span class="line">--net=host \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/hosts:/etc/hosts \</span><br><span class="line">-v /data/kafka_cluster/kafka/data:/kafka \</span><br><span class="line">-v /data/kafka_cluster/kafka/logs:/opt/kafka/logs \</span><br><span class="line">-e KAFKA_ADVERTISED_HOST_NAME=10.29.132.22 \</span><br><span class="line">-e KAFKA_ADVERTISED_PORT=9092 \</span><br><span class="line">-e KAFKA_ZOOKEEPER_CONNECT=10.29.132.21:2181,10.29.132.22:2181,10.29.132.23:2181 \</span><br><span class="line">-e KAFKA_BROKER_ID=1 \</span><br><span class="line">-e KAFKA_HEAP_OPTS=<span class="string">"-Xmx6G -Xms6G"</span> \</span><br><span class="line">wurstmeister/kafka</span><br><span class="line"></span><br><span class="line">docker run -itd \</span><br><span class="line">--name=kafka2 \</span><br><span class="line">--restart=always \</span><br><span class="line">--net=host \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/hosts:/etc/hosts \</span><br><span class="line">-v /data/kafka_cluster/kafka/data:/kafka \</span><br><span class="line">-v /data/kafka_cluster/kafka/logs:/opt/kafka/logs \</span><br><span class="line">-v /data/kafka_cluster/kafka/config:/opt/kafka/config \</span><br><span class="line">-e KAFKA_ADVERTISED_HOST_NAME=kafka2 \</span><br><span class="line">-e KAFKA_ZOOKEEPER_CONNECT=kafka1:2181,kafka2:2181,kafka3:2181 \</span><br><span class="line">-e KAFKA_BROKER_ID=1 \</span><br><span class="line">-e KAFKA_HEAP_OPTS=<span class="string">"-Xmx6G -Xms6G"</span> \</span><br><span class="line">wurstmeister/kafka</span><br><span class="line"></span><br><span class="line">docker run -itd \</span><br><span class="line">--name=kafka3 \</span><br><span class="line">--restart=always \</span><br><span class="line">--net=host \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/hosts:/etc/hosts \</span><br><span class="line">-v /data/kafka_cluster/kafka/data:/kafka \</span><br><span class="line">-v /data/kafka_cluster/kafka/logs:/opt/kafka/logs \</span><br><span class="line">-v /data/kafka_cluster/kafka/config:/opt/kafka/config \</span><br><span class="line">-e KAFKA_ADVERTISED_HOST_NAME=10.29.132.23 \</span><br><span class="line">-e KAFKA_ADVERTISED_PORT=9094 \</span><br><span class="line">-e KAFKA_PORT=9094 \</span><br><span class="line">-e KAFKA_ZOOKEEPER_CONNECT=10.29.132.21:2181,10.29.132.22:2181,10.29.132.23:2181 \</span><br><span class="line">-e KAFKA_BROKER_ID=2 \</span><br><span class="line">-e KAFKA_HEAP_OPTS=<span class="string">"-Xmx6G -Xms6G"</span> \</span><br><span class="line">wurstmeister/kafka</span><br><span class="line"></span><br><span class="line">docker run -itd \</span><br><span class="line">--name=kafka3 \</span><br><span class="line">--restart=always \</span><br><span class="line">--net=host \</span><br><span class="line">--privileged=<span class="literal">true</span> \</span><br><span class="line">-v /etc/hosts:/etc/hosts \</span><br><span class="line">-v /data/kafka_cluster/kafka/data:/kafka \</span><br><span class="line">-v /data/kafka_cluster/kafka/logs:/opt/kafka/logs \</span><br><span class="line">-v /data/kafka_cluster/kafka/config:/opt/kafka/config \</span><br><span class="line">-e KAFKA_ADVERTISED_HOST_NAME=kafka3 \</span><br><span class="line">-e KAFKA_ZOOKEEPER_CONNECT=kafka1:2181,kafka2:2181,kafka3:2181 \</span><br><span class="line">-e KAFKA_BROKER_ID=2 \</span><br><span class="line">-e KAFKA_HEAP_OPTS=<span class="string">"-Xmx6G -Xms6G"</span> \</span><br><span class="line">wurstmeister/kafka</span><br></pre></td></tr></table></figure>
-<h3 id="Kafka集群验证"><a href="#Kafka集群验证" class="headerlink" title="Kafka集群验证"></a>Kafka集群验证</h3><p>查看topic</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./kafka-topics.sh --list --zookeeper localhost:2181</span><br></pre></td></tr></table></figure>
-<p>进入docker内部：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">exec</span> -it kafka bash</span><br><span class="line"><span class="built_in">cd</span> /opt/kafka/</span><br><span class="line">bin/kafka-topics.sh --zookeeper 10.29.182.149:2181 --list</span><br><span class="line">bin/kafka-topics.sh --zookeeper 10.29.132.21:2181,10.29.132.22:2181,10.29.132.23:2181 --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建topic</span></span><br><span class="line">./kafka-topics.sh --create --topic user_group_status --replication-factor 1 --partitions 1 --zookeeper 10.29.182.149:2181</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启kafka</span></span><br><span class="line">bin/kafka-server-start.sh config/server.properties</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收consumer数据</span></span><br><span class="line">bin/kafka-console-consumer.sh --bootstrap-server 10.29.132.22:9093 --topic Alarmsys_Signal --from-beginning</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发送producer数据</span></span><br><span class="line">bin/kafka-console-producer.sh --broker-list 10.29.182.149:9092 --topic user_group_status</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -373,9 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/07/docker-rocketmq/" itemprop="url">docker部署RocketMQ</a></h1>
+          <h1 class="post-title" itemprop="name headline">docker部署RocketMQ</h1>
         
 
         <div class="post-meta">
@@ -425,9 +300,7 @@
       
 
       
-        
-          
-            <p>通过docker快速部署RocketMQ</p>
+        <p>通过docker快速部署RocketMQ</p>
 <h2 id="1-Quick-Start"><a href="#1-Quick-Start" class="headerlink" title="1. Quick Start"></a>1. Quick Start</h2><h3 id="部署Server"><a href="#部署Server" class="headerlink" title="部署Server"></a>部署Server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 9876:9876 --name rocketmq-server  foxiswho/rocketmq:server</span><br></pre></td></tr></table></figure>
 <h3 id="部署Broker"><a href="#部署Broker" class="headerlink" title="部署Broker"></a>部署Broker</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 10911:10911 -p 10909:10909 --name rocketmq-broker --link rocketmq-server:namesrv -e <span class="string">"NAMESRV_ADDR=namesrv:9876"</span> -e <span class="string">"JAVA_OPTS=-Duser.home=/opt"</span>  -e <span class="string">"JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m"</span> foxiswho/rocketmq:broker</span><br></pre></td></tr></table></figure>
 <h3 id="部署Console控制台"><a href="#部署Console控制台" class="headerlink" title="部署Console控制台"></a>部署Console控制台</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 10911:10911 -p 10909:10909 --name rocketmq-broker --link rocketmq-server:namesrv -e <span class="string">"NAMESRV_ADDR=namesrv:9876"</span> -e <span class="string">"JAVA_OPTS=-Duser.home=/opt"</span>  -e <span class="string">"JAVA_OPT_EXT=-server -Xms128m -Xmx128m -Xmn128m"</span> foxiswho/rocketmq:broker</span><br></pre></td></tr></table></figure>
@@ -578,8 +451,6 @@
 </li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -594,14 +465,36 @@
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/docker-rocketmq/" rel="tag"># docker rocketmq</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/07/docker-kafka/" rel="prev" title="docker部署Kafka">
+                docker部署Kafka <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -611,10 +504,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -622,6 +516,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -642,8 +540,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -694,6 +601,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">1. Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#部署Server"><span class="nav-number">1.1.</span> <span class="nav-text">部署Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署Broker"><span class="nav-number">1.2.</span> <span class="nav-text">部署Broker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署Console控制台"><span class="nav-number">1.3.</span> <span class="nav-text">部署Console控制台</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-部署方案"><span class="nav-number">2.</span> <span class="nav-text">2. 部署方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-多Master模式（2m-noslave）"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 多Master模式（2m-noslave）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-多Master多Slave模式，异步复制（2m-2s-async）"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 多Master多Slave模式，异步复制（2m-2s-async）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-多Master多Slave模式，同步双写（2m-2s-sync）"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 多Master多Slave模式，同步双写（2m-2s-sync）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-常用命令"><span class="nav-number">3.</span> <span class="nav-text">3. 常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-shmqadmin"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 shmqadmin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-创建Topic"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 创建Topic</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-FAQ"><span class="nav-number">4.</span> <span class="nav-text">5. FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-broker启动报错-runbroker-sh-line-62-126674-Killed-JAVA-JAVA-OPT"><span class="nav-number">4.1.</span> <span class="nav-text">5.1 broker启动报错/runbroker.sh: line 62: 126674 Killed $JAVA ${JAVA_OPT} $@</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-com-alibaba-rocketmq-client-exception-MQClientException-No-route-info-of-this-topic-TopicTest1"><span class="nav-number">4.2.</span> <span class="nav-text">5.2 com.alibaba.rocketmq.client.exception.MQClientException: No route info of this topic, TopicTest1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-org-apache-rocketmq-remoting-exception-RemotingConnectException-connect-to-lt-172-19-0-1-10909-gt-failed"><span class="nav-number">4.3.</span> <span class="nav-text">5.3 org.apache.rocketmq.remoting.exception.RemotingConnectException: connect to &lt;172.19.0.1:10909&gt; failed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-No-route-info-of-this-topic"><span class="nav-number">4.4.</span> <span class="nav-text">5.4 No route info of this topic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-The-producer-service-state-not-OK-CREATE-JUST"><span class="nav-number">4.5.</span> <span class="nav-text">5.5 The producer service state not OK, CREATE_JUST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-术语"><span class="nav-number">5.</span> <span class="nav-text">6 术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-Disk-Flush（磁盘刷新-同步操作）"><span class="nav-number">5.1.</span> <span class="nav-text">6.1 Disk Flush（磁盘刷新/同步操作）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-Broker-Replication（Broker间数据同步-复制）"><span class="nav-number">5.2.</span> <span class="nav-text">6.2 Broker Replication（Broker间数据同步/复制）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-核心概念"><span class="nav-number">5.3.</span> <span class="nav-text">6.3 核心概念</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -827,6 +750,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
